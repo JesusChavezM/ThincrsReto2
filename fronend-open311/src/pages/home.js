@@ -30,11 +30,18 @@ export default function Home() {
           <tbody>
             {services.map((service, index) => (
               <tr>
-                <th scope="row" key={index}>{index+1}</th>
+                <th scope="row" key={index}>
+                  {index + 1}
+                </th>
                 <td>{service.name}</td>
                 <td>{service.category}</td>
                 <td>{service.description}</td>
                 <td>{service.location}</td>
+                <td>
+                  <button className="btn btn-primary mx-2">Ver</button>
+                  <button className="btn btn-outline-primary mx-2">Editar</button>
+                  <button className="btn btn-danger mx-2">Borrar</button>
+                </td>
               </tr>
             ))}
           </tbody>
