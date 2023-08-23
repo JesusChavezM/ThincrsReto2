@@ -1,6 +1,7 @@
 package com.thincrs.open311Thincrs.controller;
 
 
+import com.thincrs.open311Thincrs.exception.ServicesNotFoundException;
 import com.thincrs.open311Thincrs.model.Services;
 import com.thincrs.open311Thincrs.repository.ServicesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class ServicesController {
     private ServicesRepository servicesRepository;
 
     @PostMapping("/service")
-    Services newService(@RequestBody Services newService){
+    Services newService(@RequestBody Services newService) {
         return servicesRepository.save(newService);
     }
 
@@ -25,6 +26,10 @@ public class ServicesController {
         return servicesRepository.findAll();
     }
 
+    @GetMapping("/service/{id}")
+    Services getServiceById(@PathVariable Long id) {
+        return servicesRepository.findById(id)
+                .orElseThrow(() -> new ServicesNotFoundException(id));
 
-
+    }
 }
