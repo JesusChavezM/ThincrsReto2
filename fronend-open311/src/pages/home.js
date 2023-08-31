@@ -35,7 +35,7 @@ export default function Home() {
               <th scope="col">#</th>
               <th scope="col">Nombre</th>
               <th scope="col">Categoría</th>
-              <th scope="col">descrición</th>
+              <th scope="col">Descrición</th>
               <th scope="col">Herramientas</th>
             </tr>
           </thead>
