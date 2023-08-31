@@ -12,7 +12,6 @@ public class Services {
     private String name;
     private String description;
     private String category;
-    private String location;
 
     public long getId() {
         return id;
@@ -46,11 +45,4 @@ public class Services {
         this.category = category;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
 }

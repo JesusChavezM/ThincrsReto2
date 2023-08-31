@@ -16,9 +16,9 @@ public class ServicesController {
     @Autowired
     private ServicesRepository servicesRepository;
 
-    @PostMapping("/service")
-    Services newService(@RequestBody Services newService) {
-        return servicesRepository.save(newService);
+    @PostMapping("/services")
+    Services newServices(@RequestBody Services newServices) {
+        return servicesRepository.save(newServices);
     }
 
     @GetMapping("/services")
@@ -26,31 +26,30 @@ public class ServicesController {
         return servicesRepository.findAll();
     }
 
-    @GetMapping("/service/{id}")
-    Services getServiceById(@PathVariable Long id) {
+    @GetMapping("/services/{id}")
+    Services getServicesById(@PathVariable Long id) {
         return servicesRepository.findById(id)
                 .orElseThrow(() -> new ServicesNotFoundException(id));
     }
 
-    @PutMapping("/service/{id}")
-    Services updateService(@RequestBody Services newServices, @PathVariable Long id){
+    @PutMapping("/services/{id}")
+    Services updateServices(@RequestBody Services newServices, @PathVariable Long id){
         return servicesRepository.findById(id)
-                .map(service ->{
-                    service.setName(newServices.getName());
-                    service.setCategory(newServices.getCategory());
-                    service.setDescription(newServices.getDescription());
-                    service.setLocation(newServices.getLocation());
-                    return servicesRepository.save(service);
+                .map(services ->{
+                    services.setName(newServices.getName());
+                    services.setCategory(newServices.getCategory());
+                    services.setDescription(newServices.getDescription());
+                    return servicesRepository.save(services);
                 }).orElseThrow(()->new ServicesNotFoundException(id));
     }
 
-    @DeleteMapping("/service/{id}")
-    String deleteService(@PathVariable Long id){
+    @DeleteMapping("/services/{id}")
+    String deleteServices(@PathVariable Long id){
         if(!servicesRepository.existsById(id)){
             throw new ServicesNotFoundException(id);
         }
         servicesRepository.deleteById(id);
-        return  "El usuario de la id: "+id+" se elimino correctamente.";
+        return  "El servicio con id: "+id+" se elimino correctamente.";
     }
 
 

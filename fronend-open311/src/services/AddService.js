@@ -9,10 +9,9 @@ export default function AddService() {
     name: "",
     category: "",
     description: "",
-    location:"",
   });
 
-  const { name, category, description, location } = service;
+  const { name, category, description, } = service;
 
 
   const onInputChange = (e) => {
@@ -21,7 +20,7 @@ export default function AddService() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8080/service", service);
+    await axios.post("http://localhost:8080/services", service);
     navigate("/");
   };
 
@@ -30,7 +29,7 @@ export default function AddService() {
     <div className="container">
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2">
-          <h2 className="text-center m-4">Realizar Solicitud</h2>
+          <h2 className="text-center m-4">Agregar Servicio</h2>
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3">
               <label htmlFor="name" className="form-label">
@@ -43,6 +42,7 @@ export default function AddService() {
                 name="name"
                 value={name}
                 onChange={(e) => onInputChange(e)}
+                required
               />
             </div>
             <div className="mb-3">
@@ -56,6 +56,7 @@ export default function AddService() {
                 name="category"
                 value={category}
                 onChange={(e) => onInputChange(e)}
+                required
               />
             </div>
             <div className="mb-3">
@@ -69,19 +70,7 @@ export default function AddService() {
                 name="description"
                 value={description}
                 onChange={(e) => onInputChange(e)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="location" className="form-label">
-                Ubicacion
-              </label>
-              <input
-                type={"text"}
-                className="form-control"
-                placeholder="Calle #, chihuahua."
-                name="location"
-                value={location}
-                onChange={(e) => onInputChange(e)}
+                required
               />
             </div>
             <button type="submit" className="btn btn-outline-primary">

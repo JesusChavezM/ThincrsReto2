@@ -17,13 +17,18 @@ export default function Home() {
   };
 
   const deleteServices = async (id) => {
-    await axios.delete(`http://localhost:8080/service/${id}`);
+    await axios.delete(`http://localhost:8080/services/${id}`);
     loadServices();
   };
 
   return (
     <div className="container">
+      <h2>Servicios Disponibles</h2>
       <div className="py-4">
+        <Link className="btn btn-primary mx-2" to={"/addservice"}>
+          Agregar un servicio
+        </Link>
+
         <table className="table border shadow">
           <thead>
             <tr>
@@ -31,36 +36,34 @@ export default function Home() {
               <th scope="col">Nombre</th>
               <th scope="col">Categoría</th>
               <th scope="col">descrición</th>
-              <th scope="col">Ubicación</th>
               <th scope="col">Herramientas</th>
             </tr>
           </thead>
           <tbody>
-            {services.map((service, index) => (
+            {services.map((services, index) => (
               <tr>
                 <th scope="row" key={index}>
                   {index + 1}
                 </th>
-                <td>{service.name}</td>
-                <td>{service.category}</td>
-                <td>{service.description}</td>
-                <td>{service.location}</td>
+                <td>{services.name}</td>
+                <td>{services.category}</td>
+                <td>{services.description}</td>
                 <td>
                   <Link
                     className="btn btn-primary mx-2"
-                    to={`/viewservice/${service.id}`}
+                    to={`/viewservice/${services.id}`}
                   >
                     Ver
                   </Link>
                   <Link
                     className="btn btn-outline-primary mx-2"
-                    to={`/editrequest/${service.id}`}
+                    to={`/editrequest/${services.id}`}
                   >
                     Editar
                   </Link>
                   <button
                     className="btn btn-danger mx-2"
-                    onClick={() => deleteServices(service.id)}
+                    onClick={() => deleteServices(services.id)}
                   >
                     Borrar
                   </button>
